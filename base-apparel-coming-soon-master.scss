@@ -1,0 +1,190 @@
+$container__form-xs: 375;
+$container__form-sm: 576;
+$container__form-md: 768;
+$container__form-lg: 992;
+$container__form-xl: 1200;
+$container__form-xxl: 1400;
+
+$font-size: 16px;
+$container__form-xxl-min: 1399;
+$font-weight-regular: 400;
+$font-weight-light: 300;
+$font-weight-semi-bold: 600;
+
+$colors : (Desaturated Red: hsl(0, 36%, 70%), Soft Red: hsl(0, 93%, 68%), Dark Grayish Red: hsl(0, 6%, 24%), Very Light Gray: hsl(204, 8%, 98%));
+$fallback-colors: (LightCoral Crimson FireBrick Gray97);
+
+@mixin bg-color($color,$fallback-color){
+    background-color: $fallback-color;
+    background-color: $color;
+}
+@mixin font-color($color,$fallback-color){
+    color: $fallback-color;
+	color: $color;
+}
+@mixin width($grid-size){
+    width: $grid-size * 1px;
+}
+@mixin linear-gradient($deg,$color1,$color2){
+    background-color: linear-gradient($deg,$color1,$color2);
+}
+
+@mixin border-radius($radius){
+    border-radius: $radius;
+}
+@mixin margin($args...){
+    margin: $args;
+}
+@mixin padding($args...){
+    padding: $args;
+}
+
+
+*,::before,::after{
+	box-sizing:border-box;
+}
+html, body{
+	width: 100vw;
+	height: 100vh;
+	overflow: auto;
+	font: $font-weight-regular $font-size 'Josefin Sans', sans-serif;
+	@include bg-color(map-get($colors, Very Light Gray), nth($fallback-colors, 4));
+	@media screen and (min-width: $container__form-xxl * 1px){ 
+	   background: url(https://raw.githubusercontent.com/cmb347827/base-apparel-coming-soon-master-github.io/main/bg-pattern-desktop.svg) repeat fixed;
+	}
+	
+}
+
+h1{
+    font-weight: $font-weight-semi-bold;
+	letter-spacing: 13px;
+    span{
+	   @include font-color(map-get($colors, Desaturated Red),nth($fallback-colors, 1)); 
+	   font-weight: $font-weight-light;
+	}
+}
+
+main{
+	overflow: auto;
+	width: 100%;
+	min-height: 100vh;
+	display: grid;
+	place-content:center;
+	
+	
+	.container{
+	    @include width($container__form-xs);
+		border: 2px solid darken(map-get($colors, Very Light Gray),3);
+		height: 100%;
+		padding: 0;
+	    margin: 0;
+		
+		.resize {
+		    width: 130px;
+			height: 45px;
+			//@include margin(25px 100px 25px 0);
+			@media screen and (min-width: $container__form-xxl * 1px){
+			    position:relative;
+				left: 120px;
+			   
+			}
+		}
+		
+		form{
+			p:nth-of-type(1),label{
+			    @include font-color(map-get($colors, Desaturated Red),nth($fallback-colors, 1)); 
+				line-height: 26px;
+			}
+			label{
+			    @include margin(-10px 0 0 0);
+			}
+		    .input[type='email']{
+			    height: 50px;
+				width: 400px;
+				@include border-radius(12px);
+			    border: 1px solid map-get($colors, Desaturated Red);
+				&:focus{
+				   border: 2px solid black;
+				   -webkit-transition: 0.5s;
+                   transition: 0.5s;
+                   outline: none;
+				}
+				&::placeholder{
+				  @include font-color(map-get($colors, Desaturated Red),nth($fallback-colors, 1)); 
+				}
+			}
+			@media screen and (min-width: $container__form-xxl * 1px){
+			    p:nth-of-type(1),label{
+				    line-height: 2rem;
+				}
+			}
+		}
+		
+		button{
+			box-shadow: 0px 5px 15px map-get($colors, Soft Red);
+			@include border-radius(30%);
+			border:none;
+		}
+		#check-input{
+		    //first fallback background color.
+		    @include bg-color(lighten(map-get($colors, Soft Red),15), nth($fallback-colors, 2)); 
+			@include linear-gradient(135deg,hsl(0, 0%, 100%),hsl(0, 100%, 98%));
+			@include margin(0 0 0 -30px);
+		    width: 60px;
+			@media screen and (min-width: $container__form-xxl * 1px){
+			    width: 100px;
+			    @include margin(0 0 0 -50px);
+			    &:hover,&:active{
+			        @include bg-color(lighten(map-get($colors, Desaturated Red),11), nth($fallback-colors, 1)); 
+					@include linear-gradient(135deg,hsl(0, 80%, 86%),hsl(0, 74%, 74%));
+			    }
+			}
+		}
+		.error{
+		    display:none;
+		    position:relative;
+		    bottom: 40px;
+		    left: 17rem;
+		    @media screen and (min-width: $container__form-xxl * 1px){
+			     left: 20rem;
+			}
+		}
+		.image{
+		    overflow: auto;
+		    #mobile{
+		        display:none;
+		    }
+		    #desktop{
+		        display: none;
+		    }
+	        @media screen and (max-width: $container__form-xxl-min * 1px){
+			    #mobile{
+		           display:block;
+				   width: 100%;
+				   @include margin(50px 0);
+		        }
+		    }
+		    @media screen and (min-width: $container__form-xxl * 1px){
+			    #desktop{
+		           display: block;
+				   width: 100%;
+				   height: 80vh;
+		        }
+		    }
+	    }
+	}
+	
+    
+	@media screen and (min-width: $container__form-xxl * 1px){ 
+	    .container{
+	        @include width($container__form-xxl);
+			
+			
+		}
+    }
+	
+}
+footer{
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+}
