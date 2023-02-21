@@ -29,8 +29,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Screenshot](https://i.postimg.cc/sXwfM60q/screenshot.png)
-
+[screenshot.png](https://postimg.cc/WFqcKnVw)
 
 ### Links
 
